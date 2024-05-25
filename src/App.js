@@ -10,13 +10,19 @@ function App() {
     {rowNumber: 3, rowDescription: 'Make dinner', rowAssigned: 'User One'}
   ])
   const addTodo=(description,assigned)=>{
+    let rowNumber=0;
     if(todos.length>0){
-      const newTodo={rowNumber: todos.length+1,
+      rowNumber=todos[todos.length-1].rowNumber+1;
+    }
+    else{
+      rowNumber=1;
+    }
+      const newTodo=
+        {rowNumber: rowNumber,
         rowDescription: description,
         rowAssigned: assigned
-        }
+        };
         setTodos(todos=>[...todos,newTodo])
-      }
     }
   return (
     <div className='mt-5 container'>
