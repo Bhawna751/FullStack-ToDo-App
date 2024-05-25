@@ -1,8 +1,15 @@
 import React , {useState} from 'react';
-function NewTodoForm(){
+function NewTodoForm(props){
     const [description,setDescription] = useState('');/*useState returns an array of two elements and 
     we're structuring that array into variables called description and setDescription*/
     const [assigned,setAssigned] = useState('');
+    const submitTodo= () =>{
+        if(description!== '' && assigned!== ''){
+            props.addTodo(description,assigned);
+            setDescription('');//removing the previous description to empty string
+            setAssigned('');
+        }
+    }
     
     return(
         <div className='mt-5'>
@@ -28,7 +35,13 @@ function NewTodoForm(){
                         value={description}>
                     </textarea>
                 </div>
-                <button type='button' className='btn btn-primary mt-3'>Add Todo</button>
+                <button 
+                    type='button' 
+                    className='btn btn-primary mt-3'
+                    onClick={submitTodo}
+                >
+                    Add Todo
+                </button>
             </form>
         </div>
     )
